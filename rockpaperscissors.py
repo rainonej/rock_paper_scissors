@@ -42,16 +42,21 @@ SELECTIONS_LIST_COMPANIES = ['GOOGLE', 'APPLE', 'MICROSOFT', 'SAMSUNG', 'AMAZON'
 stats_count = {'player':0, 'computer':0, 'ties':0}
 
 def clrscr():
-  """ Clears the console in order to make a more pleasant game """
+  """ Clears the console in order to make a more pleasant game 
   if os.name == "posix":  # compatible with Unix/Linux/MacOS/BSD/etc
     os.system('clear')
   elif os.name in ("nt", "dos", "ce"):  # compatible with DOS/Windows
     os.system('CLS')
-
+    """
+  pass
+test = 0
 def welcome():
   """ Main menu for the Game """
   clrscr()
-  while True:
+  playing = True
+  while (playing == True):
+    print(playing)  
+    print(test)
     option = input(
       "************** Welcome to my Rock-Paper-Scissors based Games ******************"
     "\n*******************************************************************************"
@@ -67,7 +72,8 @@ def welcome():
       lets_play(option)
     elif option == '4':  # if option is 4, exits the program
       print("Bye bye")
-      exit()
+      #exit()
+      playing = False
     else:  #  if there's an invalid option, the menu will start again
       input("Invalid option. Try again... Please press ENTER to continue")
       clrscr()
@@ -130,7 +136,9 @@ def lets_play(option):
   print(intro)  #  displays the intro information based on the option selected
   print(option_help)  # displays the help information based on the option selected
     
-  while True:
+  playing = True
+  
+  while (playing == True):
     player_selection = input("Your Selection {}: ".format(selections_list))
     player_selection = player_selection.upper()
     
@@ -174,7 +182,11 @@ def lets_play(option):
       break
     elif player_selection == 'EXIT':  #  if the user wants to exit the game
       print("Bye bye... YOU COWARD!")
-      exit()
+      playing = False
+      test = 100 #  I see the problem. playing is a local variable, so I can't change it in this function.
+      #exit()
+      #break
+      #print('after break')
     else:
       print("Invalid selection. Try again...")  #  if there's an invalid choice, the input will show again
 
