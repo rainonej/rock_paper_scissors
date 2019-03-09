@@ -42,7 +42,8 @@ SELECTIONS_LIST_COMPANIES = ['GOOGLE', 'APPLE', 'MICROSOFT', 'SAMSUNG', 'AMAZON'
 stats_count = {'player':0, 'computer':0, 'ties':0}
 
 def clrscr():
-  """ Clears the console in order to make a more pleasant game 
+  """ Clears the console in order to make a more pleasant game """
+  """
   if os.name == "posix":  # compatible with Unix/Linux/MacOS/BSD/etc
     os.system('clear')
   elif os.name in ("nt", "dos", "ce"):  # compatible with DOS/Windows

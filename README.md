@@ -23,3 +23,9 @@ It will also have attributes of text that will be spit out at certain times (lik
 We should have a player class with a player history, wlt record, and an optional name. 
 For now the "AI" will just be a random number generator, but in the future it will be an AI. There will 
 There should also be a file thats created/updated everytime a game is finished or the program is editted that keeps the players history and the wlt record.
+
+
+Future Ideas for a full game:
+Download player data from 10,000 human games of rock paper scissors.
+The player fights enemies by playing RPS. If you loose a round you loose health. The player and the enemy have health bars.
+Have everything about the game designed to lull the player into a pattern: upgrades to make certain moves stronger or provide more defence, upgrades to make certain combinations even stronger (using rock twice in a row dose double damage the second time), have a count down timer to that there isn't too much time to think each round (this will also make people want to play more rounds), have 8-bit music which provides a different note/sound for each element you choose (also a sound effect for winning or loosing).

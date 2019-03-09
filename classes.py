@@ -43,6 +43,16 @@ class Player:
 		self.streak = []
 
 
+"""
+class AI:
+	"the AI that will make a choice"
+
+	def __init__(self):
+
+		#default choice
+	def
+	"""
+
 #Test player
 gamer = Player('Jordan')
 
