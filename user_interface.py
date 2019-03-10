@@ -6,15 +6,30 @@ from classes import *
 import game_play
 from game_play import *
 
-def interface(game):
-	print('Welcome to ', game.name, "! Since you don't have an account, why don't you make one. What's your name?")
-	player_name = input()
+new_input = input
 
-	#creates a new player
-	if (player_name == ''):
-		player = Player()
+#import pickle
+
+def interface(game, AI, player):
+
+	#with open('players.pkl', 'rb') as input:
+	#	previous_player = pickle.load(input)
+
+	print('Welcome to ', game.name, "Are you ", player.name, "? [y] or [n]")
+	ans = new_input()
+	#ans = 0
+	if (ans == 'y'):
+		print('Welcome back ', player.name)
 	else:
-		player = Player(player_name)
+		print("Since you don't have an account, why don't you make one. What's your name?")
+		player_name = new_input()
+
+		#creates a new player
+		if (player_name == ''):
+			player = Player()
+		else:
+			player = Player(player_name)
+
 
 	print("Great for you to join us ", player.name, "! Let's get started")
 
@@ -22,10 +37,10 @@ def interface(game):
 	print(game.rules)
 	print('Your options are: ', game.elements)
 	print('Your choice is:')
-	plaer_choice = input()
+	plaer_choice = new_input()
 
 	#See who won
-	AI_choice = gamePlay(game, player, plaer_choice)
+	AI_choice = gamePlay(game, player, plaer_choice, AI)
 
 
 	#Resolution message
@@ -35,6 +50,12 @@ def interface(game):
 		print('Boo! ', AI_choice , ' beats ' ,  plaer_choice)
 	else:
 		print('its a tie')
+
+	#with open('players.pkl', 'wb') as output:
+	#	pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
+
+
+	#print(player.wlt)
 
 
 

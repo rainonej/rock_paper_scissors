@@ -32,7 +32,7 @@ RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'], [('ROCK', 
 class Player:
 	"The player is his/her own class"
 
-	def __init__(self, name = 'Player 1'):
+	def __init__(self, name = 'Player_1'):
 
 		self.name = name
 
@@ -43,15 +43,16 @@ class Player:
 		self.streak = []
 
 
-"""
+import random  #  for the current 'AI' to work
+
 class AI:
 	"the AI that will make a choice"
 
-	def __init__(self):
+	#This is the default choice. We can override this choice with a more sophisticated AI
+	def choice(self, game, player):
+		return random.choice(game.elements)
 
-		#default choice
-	def
-	"""
+t = AI()
 
 #Test player
 gamer = Player('Jordan')

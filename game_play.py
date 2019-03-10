@@ -1,14 +1,12 @@
 """This is the file where we define how the game is played"""
 
-import random  #  for the current 'AI' to work
 
 
-
-def gamePlay(game, player, player_choice):
+def gamePlay(game, player, player_choice, AI):
 	"A function which takes in a game, a player, and a player input and determines who wins and updates the 'score cards' "
 
 	#Where the future AT will go
-	AI_choice = random.choice(game.elements)
+	AI_choice = AI.choice(game, player)
 
 
 	#where we determins who won
