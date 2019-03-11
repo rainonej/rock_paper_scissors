@@ -5,7 +5,7 @@ A Rock - Paper - Scissors (and much more) game made in Python :)
 
 The new goal of this project is to
 
-[ ] Fix the old code so that it works, isn't as heavy, and looks nicer
+[+] Fix the old code so that it works, isn't as heavy, and looks nicer
 [ ] Create an AI which can predict human behavior of rock, paper, scissors
 [ ] Create a Graphical User Interface for the game
 
