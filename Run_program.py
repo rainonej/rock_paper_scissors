@@ -14,14 +14,14 @@ from classes import *
 import pickle
 
 with open('players.pkl', 'rb') as input:
-	player = pickle.load(input)
+	list_of_players = pickle.load(input)
 
 import user_interface
 from user_interface import *
 
 
-interface(RPS,t, player)
+interface(RPS,t, list_of_players)
 
 
 with open('players.pkl', 'wb') as output:
-	pickle.dump(player, output, pickle.HIGHEST_PROTOCOL)
+	pickle.dump(list_of_players, output, pickle.HIGHEST_PROTOCOL)
