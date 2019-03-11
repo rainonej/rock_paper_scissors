@@ -8,7 +8,7 @@ class RPSgame:
 		self.elements = elements
 		self.winners = winners #of 
 
-		self.rules = "You already know how to play this game."
+		self.rules = "You already know how to play this game." 
 
 		self.test()
 
@@ -28,11 +28,12 @@ class RPSgame:
 
 #Test Game
 RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'], [('ROCK', 'SCISSORS'), ('SCISSORS', 'PAPER'), ('PAPER', 'ROCK')] )
+RPS.rules += " PAPER covers ROCK, SCISSORS cuts PAPER, and ROCK crushes SCISSORS."
 
 class Player:
 	"The player is his/her own class"
 
-	def __init__(self, name = 'Player_1'):
+	def __init__(self, name = 'Player_1'): #I guess the default name thing never happens anymore
 
 		self.name = name
 
@@ -52,7 +53,7 @@ class AI:
 	def choice(self, game, player):
 		return random.choice(game.elements)
 
-t = AI()
+Default_AI = AI()
 
 #Test player
 gamer = Player('Jordan')

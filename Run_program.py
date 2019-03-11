@@ -20,7 +20,7 @@ import user_interface
 from user_interface import *
 
 
-interface(RPS,t, list_of_players)
+interface(RPS, Default_AI, list_of_players)
 
 
 with open('players.pkl', 'wb') as output:
