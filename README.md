@@ -31,3 +31,7 @@ Future Ideas for a full game:
 Download player data from 10,000 human games of rock paper scissors.
 The player fights enemies by playing RPS. If you loose a round you loose health. The player and the enemy have health bars.
 Have everything about the game designed to lull the player into a pattern: upgrades to make certain moves stronger or provide more defence, upgrades to make certain combinations even stronger (using rock twice in a row dose double damage the second time), have a count down timer to that there isn't too much time to think each round (this will also make people want to play more rounds), have 8-bit music which provides a different note/sound for each element you choose (also a sound effect for winning or loosing).
+
+
+AI Ideas:
+Humans really don't like to give "random" data with too many percieved patterns. So they will be more likely to not choose rock after choosing rock 2 or 3 tiems in a row. Look for the higher expectation value, not nessisarily the one that will win.
