@@ -43,17 +43,34 @@ class Player:
 
 		self.streak = []
 
+class Human_Player(Player):
+	"A subclass exclussively for Human Players"
+
+	def __init__(self, name):
+		super().__init__()
+		self.name = name
+		self.record = True
+
+	def choice(self): #this will make the AI's and the players more similar
+		return input()
+
+
 
 import random  #  for the current 'AI' to work
 
-class AI:
+class AI(Player):
 	"the AI that will make a choice"
 
+	def __init__(self):
+		super().__init__()
+		self.record = False
+
 	#This is the default choice. We can override this choice with a more sophisticated AI
-	def choice(self, game, player):
-		return random.choice(game.elements)
+	def choice(self):
+		return random.choice(self.game.elements)
 
 Default_AI = AI()
+Default_AI.game = RPS
 
 #Test player
 gamer = Player('Jordan')
