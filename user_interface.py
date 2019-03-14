@@ -44,7 +44,7 @@ def interface(game, AI, list_of_players):
 				if (player_name in list_of_player_names + ['NEW PLAYER', '']):
 					print("You can't pick that name, try again.")
 				else:
-					player = Player(player_name)
+					player = Human_Player(player_name)
 					choosing = False
 
 
