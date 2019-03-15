@@ -25,3 +25,12 @@ interface(RPS, Default_AI, list_of_players)
 
 with open('players.pkl', 'wb') as output:
 	pickle.dump(list_of_players, output, pickle.HIGHEST_PROTOCOL)
+
+"""
+with open("data.txt", "r") as f:
+    datum = f.readlines()
+ 
+for line in datum:
+    words = line.split()
+    print(words)
+"""
