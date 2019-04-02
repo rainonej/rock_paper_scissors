@@ -44,5 +44,5 @@ def switch_outcome(n):
 		return 1
 	elif (n == 1):
 		return 0
-	elif:
+	else:
 		return 2
