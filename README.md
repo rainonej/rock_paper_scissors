@@ -7,8 +7,11 @@ The new goal of this project is to
 
 [+] Fix the old code so that it works, isn't as heavy, and looks nicer
 [+] Create save files for individual players
+[+] Create a User Interface
+	[ ] Give an options menu to: edit the players list, show high scores, change games, choose your AI
 [ ] Find a nice way to work with the elements of the rock, paper, scissors game. Maybe make the elements a subclass or a seperate class. Or make a successor function.
 [ ] Create an AI which can predict human behavior of rock, paper, scissors
+[ ] Create a way to test the AI. Perhaps a fitness function.
 [ ] Create a Graphical User Interface for the game
 
 
