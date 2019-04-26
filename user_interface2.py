@@ -27,13 +27,13 @@ def interface(game, AI, list_of_players):
 
 		#select your save file
 		print('Select your file from the list or select NEW PLAYER.')
-		ans = collect_input(list_of_player_names + ['NEW PLAYER'])
+		ans = collect_input(list_of_player_names + ['NEW PLAYER'] + ['OPTIONS'])
 
 		if ans in range(0, len(list_of_player_names)):
 			player = list_of_players[ans]
 			del list_of_players[ans]
 
-		else:
+		elif(ans == len(list_of_player_names):
 			print('Enter your name:')
 
 			#Make sure they pick a valid name
@@ -46,6 +46,13 @@ def interface(game, AI, list_of_players):
 				else:
 					player = Human_Player(player_name)
 					choosing = False
+
+		elif(ans == len(list_of_player_names)+1): #Opens the options menu
+			'''The options should be to clear the player list, view scores, change games and AI's, etc...
+			But it doesn't exist yet'''
+			print("The OPTIONS menu doesn't exist yet")
+
+
 
 
 	print("Great for you to join us ", player.name, "! Let's get started")
@@ -84,29 +91,4 @@ def interface(game, AI, list_of_players):
 
 	list_of_players.append(player)
 	print('your record is', player.wlt)
-
-
-def collect_input(options):
-	"options should be given in all caps."
-	#list off the options
-	#num_options = list(enumerate(options))
-	numbers = []
-	for i in range(0,len(options)):
-		print("[", i, "]", options[i])
-		numbers.append(str(i))
-
-	#collect the answer
-	choosing = True
-	while (choosing == True):
-		print("you select:")
-		answer = new_input()
-		answer = answer.upper()
-		if (answer in options):
-			return options.index(answer)
-			choosing = False
-		elif(answer in numbers):
-			return int(answer)
-			choosing = False
-		else:
-			print('not a valid option')
 

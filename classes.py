@@ -75,3 +75,61 @@ Default_AI.game = RPS
 #Test player
 gamer = Player('Jordan')
 
+import pickle
+
+class Interface:
+	"Objects of this class will be the different skins and versions on the UI."
+	def __init__(self):
+		self.name = None
+		self.version = 0
+		self.message = "Hello!"
+
+		#self.load_lists()
+
+	def load_lists(self):
+		with open('players.pkl', 'rb') as input:
+			list_of_players = pickle.load(input)
+		with open('list_of_games.pkl', 'rb') as input:
+			list_of_games = pickle.load(input)
+		with open('list_of_AI.pkl', 'rb') as input:
+			list_of_AI = pickle.load(input)
+
+		self.list_of_players = list_of_players
+		self.list_of_AI = AI
+		self.list_of_games = list_of_games
+
+
+
+	def welcome(self):
+		"Loads the list of Players, Games, and AI's. It presents the most recent option, then give you new options"
+		self.load_lists()
+		print('how do you do?')
+
+
+
+
+#This is going to cause a problem with being defined in two places at once
+def collect_input(options):
+	"options should be given in all caps."
+	#list off the options
+	#num_options = list(enumerate(options))
+	numbers = []
+	for i in range(0,len(options)):
+		print("[", i, "]", options[i])
+		numbers.append(str(i))
+
+	#collect the answer
+	choosing = True
+	while (choosing == True):
+		print("you select:")
+		answer = new_input()
+		answer = answer.upper()
+		if (answer in options):
+			return options.index(answer)
+			choosing = False
+		elif(answer in numbers):
+			return int(answer)
+			choosing = False
+		else:
+			print('not a valid option')
+

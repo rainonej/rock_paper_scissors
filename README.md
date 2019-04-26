@@ -3,7 +3,7 @@ RockPaperScissors
 
 A Rock - Paper - Scissors (and much more) game made in Python :)
 
-The new goal of this project is to
+The new goal of this project is to:
 
 [+] Fix the old code so that it works, isn't as heavy, and looks nicer
 
@@ -11,11 +11,11 @@ The new goal of this project is to
 
 [+] Create a User Interface
 
-	[ ] Give an options menu to: edit the players list, show high scores, change games, choose your AI
+[ ] Give an options menu to: edit the players list, show high scores, change games, choose your AI
 
 [+] Gain massive amounts of data online and use a super computer (Stampede2) to process it
 
-	[ ] Interpret and use the processed data
+[ ] Interpret and use the processed data
 
 [ ] Find a nice way to work with the elements of the rock, paper, scissors game. Maybe make the elements a subclass or a seperate class. Or make a successor function.
 
