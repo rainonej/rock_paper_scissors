@@ -9,6 +9,8 @@ The new goal of this project is to
 [+] Create save files for individual players
 [+] Create a User Interface
 	[ ] Give an options menu to: edit the players list, show high scores, change games, choose your AI
+[+] Gain massive amounts of data online and use a super computer (Stampede2) to process it
+	[ ] Interpret and use the processed data
 [ ] Find a nice way to work with the elements of the rock, paper, scissors game. Maybe make the elements a subclass or a seperate class. Or make a successor function.
 [ ] Create an AI which can predict human behavior of rock, paper, scissors
 [ ] Create a way to test the AI. Perhaps a fitness function.
