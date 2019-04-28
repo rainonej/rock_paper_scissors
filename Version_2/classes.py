@@ -24,7 +24,20 @@ class RPSgame:
 
 		# make sure there are no contradictions in the rules of the game
 
+	def outcome(self, pair):
+		'beats("ROCK", "SCISSORS") = ">"  '
+		#I should probably eventually have an integer version of this.
 
+		opposite_pair = (pair[1], pair[0])
+		if (pair in self.winners):
+			return ">"
+		elif (opposite_pair in self.winners):
+			return "<"
+		else:
+			return "="
+
+
+		
 
 #Test Game
 RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'], [('ROCK', 'SCISSORS'), ('SCISSORS', 'PAPER'), ('PAPER', 'ROCK')] )
@@ -37,11 +50,36 @@ class Player:
 
 		self.name = name
 
-		self.wlt = [0,0,0]
+		self.wlt = {'Win': 0, 'Lose': 0, 'Tie':0}
 
 		self.history  = []
 
 		self.streak = []
+
+		self.winning_streak = 0
+
+		self.high_score = 0
+
+	def record_round(self, result, pair):
+		"Records the rusults of a round"
+
+
+		self.history.append(pair)
+		self.wlt[result] += 1
+
+		if (result == 'Win'):
+			self.winning_streak += 1
+			self.streak.append(0)
+
+			if (self.winning_streak>self.high_score):
+				self.high_score = self.winning_streak
+
+		elif(result == 'Lose'):
+			self.winning_streak =0
+			self.streak.append(1)
+
+		else:
+			self.streak.append(2)
 
 class Human_Player(Player):
 	"A subclass exclussively for Human Players"

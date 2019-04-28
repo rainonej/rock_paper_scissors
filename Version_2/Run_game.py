@@ -1,5 +1,5 @@
 import UIs 
-from UIs import *
+from UIs import Default_UI as UI
 
 def Run_game(UI):
 	"This is the architecture of the whole game"
@@ -9,4 +9,4 @@ def Run_game(UI):
 	UI.Save_data()
 	UI.Goodbye()
 
-Run_game(Default_UI)
+Run_game(UI)
