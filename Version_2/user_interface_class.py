@@ -1,16 +1,18 @@
-"This is the new User Interface Class. It's so advanced that it needs it's own file"
+"This is the new User Interface Class. It's so advanced that it needs it's own file."
+"The idea is to have the UI have a bunch of predefined funcitons. So to create a new UI, you just instantiate the class and only edit the functions that need changing"
+"In theory, having the player, game, and AI all as atributes of the UI will slow things down, but if a human is playing, then there's no way I can make it slow enough thtat a human would notice."
 
 import pickle
 new_input = input
 import classes
-from classes import Human_Player #I don't know if this is the only part of the class I need. Can I use part of a class that I've never had before?
+from classes import Human_Player 
 
 class Interface:
 	"Objects of this class will be the different skins and versions on the UI."
 	def __init__(self):
 		self.name = "Default UI"
 		self.version = 2.0
-		self.message = "Hello!"
+		#self.message = "Hello!"
 
 	def load_lists(self):
 		"Loads the lists of things we can select from"
