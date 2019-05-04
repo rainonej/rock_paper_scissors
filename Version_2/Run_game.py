@@ -1,5 +1,6 @@
 import UIs 
 from UIs import Default_UI as UI
+from UIs import Fantasy_skin as UI2
 
 def Run_game(UI):
 	"This is the architecture of the whole game"

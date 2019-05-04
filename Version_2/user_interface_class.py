@@ -275,8 +275,10 @@ class Interface:
 
 		with open('players.pkl', 'wb') as output:
 			pickle.dump(self.list_of_players, output, pickle.HIGHEST_PROTOCOL)
+		""" #I guess I don't really need this right now.
 		with open('list_of_games.pkl', 'wb') as output:
 			pickle.dump(self.list_of_games, output, pickle.HIGHEST_PROTOCOL)
+		"""
 			
 	def Goodbye(self):
 		"The ending message"
