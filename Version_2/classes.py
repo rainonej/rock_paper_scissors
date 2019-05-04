@@ -3,10 +3,11 @@
 class RPSgame:
 	"Objects consist of the elements of the game ['ROCK', 'PAPER', 'SCISSORS'], what the winning combinations are, and possibly extra text"
 
-	def __init__(self, name, elements, winners):
+	def __init__(self, name, elements):
 		self.name = name
-		self.elements = elements
-		self.winners = winners #of 
+		self.elements = elements #List of ['ROCK', 'PAPER', 'SCISSORS']
+		self.key = list(range(1,len(elements)+1)) #just so that the AI can choose easier
+		self.return_values = self.key #these are the actual parts that get recorded and can be valid inputs in the self.outcome function
 
 		self.rules = "You already know how to play this game." 
 
@@ -17,30 +18,33 @@ class RPSgame:
 		# make sure everything is the proper type
 		if(type(self.elements) != list):
 			print('elements are not in list form')
-		if(type(self.winners) != list):
-			print('winners are not in list form')
-		if(type(self.winners[0]) != tuple):
-			print('winners is not a list of tuples')
+		#if(type(self.winners) != list):
+		#	print('winners are not in list form')
+		#if(type(self.winners[0]) != tuple):
+		#	print('winners is not a list of tuples')
 
 		# make sure there are no contradictions in the rules of the game
 
-	def outcome(self, pair):
+	def outcome(self, pair): #This is how each game determines the winners.s
 		'beats("ROCK", "SCISSORS") = ">"  '
 		#I should probably eventually have an integer version of this.
 
-		opposite_pair = (pair[1], pair[0])
-		if (pair in self.winners):
-			return ">"
-		elif (opposite_pair in self.winners):
-			return "<"
-		else:
-			return "="
+		a = pair[0]
+		b = pair[1]
+		c = (a - b) % 3
 
+		if (c==1):
+			return ">"
+		elif(c==2):
+			return "<"
+		elif (c==0):
+			return "="
 
 		
 
 #Test Game
-RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'], [('ROCK', 'SCISSORS'), ('SCISSORS', 'PAPER'), ('PAPER', 'ROCK')] )
+#RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'], [('ROCK', 'SCISSORS'), ('SCISSORS', 'PAPER'), ('PAPER', 'ROCK')] )
+RPS = RPSgame('Rock, paper, scissors', ['ROCK', 'PAPER', 'SCISSORS'])
 RPS.rules += " PAPER covers ROCK, SCISSORS cuts PAPER, and ROCK crushes SCISSORS."
 
 class Player:
@@ -105,69 +109,18 @@ class AI(Player):
 
 	#This is the default choice. We can override this choice with a more sophisticated AI
 	def choice(self):
-		return random.choice(self.game.elements)
+		return random.choice(self.game.return_values)
 
 Default_AI = AI()
 Default_AI.game = RPS
 
+#ONLY WHEN WE NEED TO RUN THIS
+import pickle
+with open('list_of_games.pkl', 'wb') as output:
+	pickle.dump([RPS], output, pickle.HIGHEST_PROTOCOL)
+
+with open('list_of_AI.pkl', 'wb') as output:
+	pickle.dump([Default_AI], output, pickle.HIGHEST_PROTOCOL)
+
 #Test player
 gamer = Player('Jordan')
-
-import pickle
-
-class Interface:
-	"Objects of this class will be the different skins and versions on the UI."
-	def __init__(self):
-		self.name = None
-		self.version = 0
-		self.message = "Hello!"
-
-		#self.load_lists()
-
-	def load_lists(self):
-		with open('players.pkl', 'rb') as input:
-			list_of_players = pickle.load(input)
-		with open('list_of_games.pkl', 'rb') as input:
-			list_of_games = pickle.load(input)
-		with open('list_of_AI.pkl', 'rb') as input:
-			list_of_AI = pickle.load(input)
-
-		self.list_of_players = list_of_players
-		self.list_of_AI = AI
-		self.list_of_games = list_of_games
-
-
-
-	def welcome(self):
-		"Loads the list of Players, Games, and AI's. It presents the most recent option, then give you new options"
-		self.load_lists()
-		print('how do you do?')
-
-
-
-
-#This is going to cause a problem with being defined in two places at once
-def collect_input(options):
-	"options should be given in all caps."
-	#list off the options
-	#num_options = list(enumerate(options))
-	numbers = []
-	for i in range(0,len(options)):
-		print("[", i, "]", options[i])
-		numbers.append(str(i))
-
-	#collect the answer
-	choosing = True
-	while (choosing == True):
-		print("you select:")
-		answer = new_input()
-		answer = answer.upper()
-		if (answer in options):
-			return options.index(answer)
-			choosing = False
-		elif(answer in numbers):
-			return int(answer)
-			choosing = False
-		else:
-			print('not a valid option')
-

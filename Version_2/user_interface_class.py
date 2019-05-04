@@ -12,7 +12,6 @@ class Interface:
 	def __init__(self):
 		self.name = "Default UI"
 		self.version = 2.0
-		#self.message = "Hello!"
 
 	def load_lists(self):
 		"Loads the lists of things we can select from"
@@ -52,20 +51,24 @@ class Interface:
 		num_of_players = len(self.list_of_players)
 		for i in range(0,num_of_players):
 			self.list_of_player_names.append(self.list_of_players[i].name)
+		opts = self.list_of_player_names + ['NEW PLAYER']
+		key = list(range(1,num_of_players+1)) + ['N'] #Set the precident that nonstandard options have single capital letter keys
+		#returns = key
 
 		print('Select your player:')
-		ans = self.pick_option(self.list_of_player_names + ['NEW PLAYER'])
+		ans = self.pick_option(opts, keys = key)
 		
-		#Picks an existing player profile
-		if (ans in range(0,num_of_players)):
+		#Pick an existing player profile
+		if (type(ans)==int): 
+			i = key.index(ans)
 			self.player = self.list_of_players[i]
 			del self.list_of_players[i]
 
-		#Creates a new player profile
-		else:
+		#New Player
+		elif(ans == 'N'):
 			print('Enter your name:')
-			self.player_name = self.get_input(forbidden = ['', 'NEW PLAYER'])
-			self.player = Human_Player(self.player_name)
+			player_name = self.get_input(forbidden = ['', 'NEW PLAYER', 'OPTIONS'])
+			self.player = Human_Player(player_name)
 
 	def pick_game(self):
 		"This is how we pick the game"
@@ -184,34 +187,35 @@ class Interface:
 				print(message)
 		return choice
 
-	def pick_option(self, options, keys = None):
-		"""options should be given in all caps. keys needs to be a list of strings in caps, the same length as options. 
-		Returns the position in options"""
-		#list off the options
-		#num_options = list(enumerate(options))
+	def pick_option(self, options, keys = None, return_values = None):
+		"Opitions are a list of things to choose from. Keys are the list of keys the player must press. Reuturn_values is a list of things the function will return"
+		"If keys are strings, they must be capitalized!"
 
-		#Get the keys
+		"Creates the keys and return_values is they don't already exist"
 		if (keys == None):
-			keys = []
-			for i in range(0,len(options)): 
-				keys.append(str(i))
+			keys = range(0,len(options))
 
-		#numbers = []
+		if (return_values == None):
+			return_values = keys
+
+		"Get's the right type"
+		keys = list(map(str,keys))
+		return_values = list(map(return_number, return_values))
+
+
 		for i in range(0,len(options)):
 			print("[", keys[i], "]", options[i])
-			#numbers.append(str(key[i]))
 
-		#collect the answer
+		"collect the answer"
 		choosing = True
 		while (choosing == True):
 			print("you select:")
 			answer = new_input()
 			answer = answer.upper()
-			if (answer in options):
-				return options.index(answer)
-				choosing = False
-			elif(answer in keys):
-				return keys.index(answer)
+			if (answer in keys):
+				i = keys.index(answer)
+				print('You selected ', options[i],)
+				return return_values[i]
 				choosing = False
 			else:
 				print('not a valid option')
@@ -222,21 +226,22 @@ class Interface:
 		print('What do you play?')
 		#Collect the input
 		options =  self.game.elements + ['OPTIONS', 'SAVE AND QUIT']
-		player_choice = self.pick_option(options, keys = ['1', '2', '3', '9', '0'])
-		self.AI_choice = self.AI.choice()
-		#self.choice is the option in a string, while the temp variable player_choice is the option as an int.
+		key = self.game.key + ['O', 'Q']
+		#returns = self.game.return_values + ['O']
+		player_choice = self.pick_option(options, keys = key) #should be an int, or a string
+		self.AI_choice = self.AI.choice() #Should be an int
 
-		if (player_choice == len(self.game.elements)+1):
-			self.playing = False
+		if (type(player_choice)!=int): #a special answer
+			if (player_choice == 'O'):
+				self.Options()
+			elif(player_choice == 'Q'):
+				self.playing = False
 
-		elif (player_choice == len(self.game.elements)):
-			self.Options()
-
-		else:
-			self.player_choice = self.game.elements[player_choice-1]
+		else: #a standard answer
+			self.player_choice = player_choice
 			outcome = self.game.outcome((self.player_choice, self.AI_choice))
-
-			print('Your opponent played ', self.AI_choice)
+			i = self.game.return_values.index(self.AI_choice)
+			print('Your opponent played ', self.game.elements[i]) #this is all because I have to switch between ints and strings
 
 			if (outcome == ">"): #Player Won
 				print('Yeah you Won!')
@@ -278,5 +283,12 @@ class Interface:
 		print('Goodbye')
 
 
-	
+def return_number(s):
+	try:
+		int(s)
+		return int(s)
+	except ValueError:
+		return str(s) 
 
+#UI = Interface()
+#UI.Welcome()
