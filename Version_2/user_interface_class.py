@@ -11,7 +11,7 @@ class Interface:
 	"Objects of this class will be the different skins and versions on the UI."
 	def __init__(self):
 		self.name = "Default UI"
-		self.version = 2.0
+		self.version = 1.0
 
 	def load_lists(self):
 		"Loads the lists of things we can select from"
@@ -26,11 +26,14 @@ class Interface:
 		self.list_of_AI = list_of_AI
 		self.list_of_games = list_of_games
 
-	def Welcome(self):
-		"Plays the welcome message. Gives the selections of players, games, and AI. Gives the options menu."
+	def Setup(self):
+		"This allows reskinned UI's to set things up the way they like"
 		#Gets the list of players, games, and AI
 		self.load_lists()
 
+	def Welcome(self):
+		"Plays the welcome message. Gives the selections of players, games, and AI. Gives the options menu."
+		
 		#Select the Player 
 		self.select_Player()
 	
@@ -73,19 +76,24 @@ class Interface:
 	def pick_game(self):
 		"This is how we pick the game"
 
-		#Makes the list to select from
-		list_of_game_names = []
-		num_of_games = len(self.list_of_games)
-		for i in range(0,num_of_games):
-			list_of_game_names.append(self.list_of_games[i].name)
+		#Bypasses the whole thing if there is only one game
+		if (len(self.list_of_games) == 1):
+			self.game = self.list_of_games[0]
 
-		#Select your game
-		print('Which game are you playing?')
-		ans = self.pick_option(list_of_game_names)
-		self.game = self.list_of_games[ans]
-		del self.list_of_games[ans]
+		else:
+			#Makes the list to select from
+			list_of_game_names = []
+			num_of_games = len(self.list_of_games)
+			for i in range(0,num_of_games):
+				list_of_game_names.append(self.list_of_games[i].name)
 
-	def outro(self):
+			#Select your game
+			print('Which game are you playing?')
+			ans = self.pick_option(list_of_game_names)
+			self.game = self.list_of_games[ans]
+			del self.list_of_games[ans]
+
+	def outro(self): #This should really on be for reskinned UI
 		"This is the message the plays before the game starts"
 		print('Ok', self.player.name, 'have fun playing', self.game.name, '!')
 
@@ -271,7 +279,7 @@ class Interface:
 	def Save_data(self):
 		"Overriding the previous save files"
 		self.list_of_players.append(self.player)
-		self.list_of_games.append(self.game)
+		#self.list_of_games.append(self.game)
 
 		with open('players.pkl', 'wb') as output:
 			pickle.dump(self.list_of_players, output, pickle.HIGHEST_PROTOCOL)

@@ -64,6 +64,9 @@ class Player:
 
 		self.high_score = 0
 
+		#This is for different skins. Some games might need extra attributes or to keep track of extra information like exp, health, gold, etc...
+		self.stats = {} 
+
 	def record_round(self, result, pair):
 		"Records the rusults of a round"
 
