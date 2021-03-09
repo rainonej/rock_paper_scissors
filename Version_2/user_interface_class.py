@@ -10,8 +10,18 @@ from classes import Human_Player
 class Interface:
 	"Objects of this class will be the different skins and versions on the UI."
 	def __init__(self):
+
 		self.name = "Default UI"
 		self.version = 1.0
+
+	def __repr__(self):
+		"Should return a string representation of the class or instance with as much information as possible, preferably something that can be passed to eval to recreate the object. Return value must be a string."
+
+		dic = {'name':self.name, 'version':self.version}
+		return str(dic)
+
+	def __str__(self):
+		return "hello world"
 
 	def load_lists(self):
 		"Loads the lists of things we can select from"
