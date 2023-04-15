@@ -1,6 +1,7 @@
 RockPaperScissors
 =================
 
+fork test
 CAMERON: To run the game, go to Run_game.py in the Version_2 folder. Feel free to use the Run_game function with either UI or UI2.
 
 Pitch:
